@@ -6,6 +6,7 @@ var Factory = function (primer) {
 
   return Object.assign({
     value: null,
+    display: null,
     left: null,
     right: null
   }, primer, {
@@ -26,10 +27,8 @@ module.exports = {
  * @returns {String}
  */
 function toString () {
-  var v = this.value;
-  var l = this.hasLeft() ? this.left : '';
-  var r = this.hasRight() ? this.right : '';
-  return l + v + r;
+  console.log('toString(' + this.display + ')')
+  return this.display;
 }
 
 /**
@@ -43,7 +42,7 @@ function toArray () {
   }
 
   if (this.hasValue()) {
-    values.push(this.value);
+    values.push(this);
   }
 
   if (this.hasRight()) {
