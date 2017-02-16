@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Server instance used to view and convert BSTree Expressions 
+ * Server instance used to view and sort BSTree values
  */
 const Hapi = require('hapi');
 const Hoek = require('hoek');

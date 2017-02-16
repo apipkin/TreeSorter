@@ -1,4 +1,7 @@
 /**
+ * Factory: Used to create an BSTree Node. The Node has three properties: 
+ *   `operator`, `left`, and `right`. Left and right is either null or a 
+ *   TreeNode
  * @param {Object} [optional] Instance values to override default values
  * @return {Object} Tree Node
  */
@@ -24,14 +27,15 @@ module.exports = {
 };
 
 /**
+ * Returns the string version of the value
  * @returns {String}
  */
 function toString () {
-  console.log('toString(' + this.display + ')')
-  return this.display;
+  return this.display || this.value.toString();
 }
 
 /**
+ * Returns the current node and decending nodes as an array
  * @returns {Array}
  */
 function toArray () {
@@ -53,6 +57,7 @@ function toArray () {
 }
 
 /**
+ * Evaluates the presence of a value
  * @returns {boolean}
  */
 function hasValue () {
@@ -60,6 +65,7 @@ function hasValue () {
 }
 
 /**
+ * Evaluates the presence of a left value
  * @returns {boolean}
  */
 function hasLeft () {
@@ -67,6 +73,7 @@ function hasLeft () {
 }
 
 /**
+ * Evaluates the presence of a right value
  * @returns {boolean}
  */
 function hasRight () {
