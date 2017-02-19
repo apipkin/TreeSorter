@@ -1,7 +1,9 @@
 /**
- * Factory: Used to create an BSTree Node. The Node has three properties: 
- *   `operator`, `left`, and `right`. Left and right is either null or a 
- *   TreeNode
+ * Factory: Used to create an BSTree Node. The Node has four properties: 
+ *   `value`, `display`, `left`, and `right`. Left and right is either 
+ *   null or a  TreeNode. Display is the initial value and used to display
+ *   the value when returning a sorted list. If a value is a fraction, the
+ *   value is the equated float from division evaluation. 
  * @param {Object} [optional] Instance values to override default values
  * @return {Object} Tree Node
  */

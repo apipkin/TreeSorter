@@ -38,7 +38,7 @@ server.register([require('inert'), require('vision')], (err) => {
   // ROUTES
   ////
 
-  // Handle conversion calls with no query
+  // Handle sort calls with no query
   server.route({
     method: 'get',
     path: '/sort/',
@@ -52,15 +52,14 @@ server.register([require('inert'), require('vision')], (err) => {
     }
   });
 
-  // Handle conversion calls with a query
+  // Handle sort calls with a query
   server.route({
-    method: 'POST',
+    method: 'post',
     path: '/sort/{q}',
     handler: function (request, reply) {
       const list = request.params.q;
       const tree = BSTree();
       const order = request.payload.order;
-      const type = request.payload.type;
 
       try {
         tree.addValues(list);
@@ -104,7 +103,7 @@ server.register([require('inert'), require('vision')], (err) => {
       }
   });
 
-  // Handle BSTree to Infix converter view
+  // Handle BSTree sorter view
   server.route({
     method: 'GET',
     path:'/', 

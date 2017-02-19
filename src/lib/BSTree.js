@@ -4,6 +4,8 @@ const InvalidValue = require('./InvalidValue');
 /**
  * Binary Search Tree (BSTree): Values added to the root node are added to the
  *   left if less than or to the right if the value is greater than or equal.
+ *   Root node is set with the initial value and subsequent values are added 
+ *   according to value comparison. 
  */
 const Tree = {
   /**
@@ -17,9 +19,9 @@ const Tree = {
    * @returns {Object} BSTree
    */
   addValues(values) {
-    this.validate(values)
-        .map(this.convertValuesToNodes.bind(this))
-        .forEach(v => this.addValue(v));
+    this.validateValues(values)                    // Ensure each value is either a fraction or an integer
+        .map(this.convertValuesToNodes.bind(this)) // Make each value a TreeNode
+        .forEach(v => this.addValue(v));           // Add each TreeNode to root
       
     return this;
   },
@@ -33,14 +35,16 @@ const Tree = {
    * @param {Object} [optional] 
    */
   addValue(valueNode, targetNode) {
+    // Set targetNode to `this.root` as a default value
+    targetNode || (targetNode = this.root);
+
     if (!this.root) { // first pass
       this.root = valueNode;
     }
     else {
-      targetNode || (targetNode = this.root);
-
       if (valueNode.value < targetNode.value) {
         if (targetNode.hasLeft()) {
+          // recurse 
           this.addValue(valueNode, targetNode.left);
         }
         else {
@@ -49,6 +53,7 @@ const Tree = {
       }
       else {
         if (targetNode.hasRight()) {
+          // recurse 
           this.addValue(valueNode, targetNode.right);
         }
         else {
@@ -67,7 +72,7 @@ const Tree = {
    * @param {Array}
    * @return {Array}
    */
-  validate(values) {
+  validateValues(values) {
     values = this.sanitizeValue(values);
 
     values.forEach(v => {
@@ -115,11 +120,13 @@ const Tree = {
     const display = value;
 
     if (this.isFraction(value)) {
+      // calculate fraction values
       value = value.split('/').reduce((a,b) =>
         parseInt(a, 10) / parseInt(b, 10)
       );
     } 
     else {
+      // converst strings to numbers
       value = parseInt(value, 10);
     }
 
@@ -157,5 +164,5 @@ const Tree = {
 
 // exports
 module.exports = function () {
-  return Object.assign({}, Tree, { root: nodeFactory() });
+  return Object.assign({}, Tree, { root: null });
 };
