@@ -35,6 +35,11 @@ const Tree = {
    * @param {Object} [optional] 
    */
   addValue(valueNode, targetNode) {
+
+    if (typeof valueNode === 'number' || typeof valueNode === 'string') {
+      valueNode = this.convertValuesToNodes(valueNode);
+    }
+
     // Set targetNode to `this.root` as a default value
     targetNode || (targetNode = this.root);
 
@@ -79,12 +84,8 @@ const Tree = {
       if (!this.isFraction(v)){ 
         var v2 = parseInt(v, 10);
 
-        if (v != v2) { // intentially check for coersion equality
+        if (isNaN(v2) || v != v2){ 
           throw new Error('Invalid value: ' + v);
-        }
-
-        if (isNaN(v2)){ 
-          throw new Error('Value is not a fraction or an interger.');
         }
       }
     });
